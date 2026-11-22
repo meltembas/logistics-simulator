@@ -5,7 +5,7 @@ namespace Logistics
     public enum EditResult
     {
         Ok, NoChange, OutOfBounds, Blocked, NoRoads, NoBridges, BridgeTooLong, NoRoundabouts, NoHighways,
-        InUse, Fixed, NotRoad, TooFar, TooShort, Exists
+        InUse, Fixed, NotRoad, TooFar, TooShort, Exists, Entrance
     }
 
     /// <summary>Player-facing construction rules on top of <see cref="RoadNetwork"/> (budget, bridges, refunds).</summary>
@@ -140,9 +140,10 @@ namespace Logistics
         {
             if (!Roads.IsRoad(t) || Roads.IsBridge(t)) return EditResult.NotRoad;
             if (Roads.IsRoundabout(t)) return EditResult.Exists;
-            if (Roads.BuildingSide(t).HasValue) return EditResult.Fixed;
+            if (Roads.BuildingSide(t).HasValue) return EditResult.Entrance;
             if (Inv.Roundabouts <= 0) return EditResult.NoRoundabouts;
-            if (w.Traffic.IsTileInUse(t)) return EditResult.InUse;
+            // Busy junctions are allowed (that is where a roundabout helps most): trucks already on
+            // their way keep the lane curve they were given; routes planned from now on circle the island.
             Inv.TrySpend(ItemKind.Roundabout);
             Roads.SetRoundabout(t, true);
             RoadPlaced?.Invoke(t);
@@ -179,7 +180,9 @@ namespace Logistics
                 case EditResult.NoRoads: return "Yol karosu kalmadı";
                 case EditResult.NoBridges: return "Köprü yok — haftalık yükseltmeden alabilirsin";
                 case EditResult.BridgeTooLong: return "Köprü bu kadar uzun olamaz";
-                case EditResult.NoRoundabouts: return "Göbek kavşak yok";
+                case EditResult.NoRoundabouts: return "Göbek kavşak kalmadı — haftalık yükseltme kartından alabilirsin";
+                case EditResult.Entrance: return "Bina girişine göbek konamaz, bir sonraki kavşağı dene";
+                case EditResult.Exists: return "Burada zaten göbek var";
                 case EditResult.NoHighways: return "Otoyol yok";
                 case EditResult.InUse: return "Bu yolda kamyon var";
                 case EditResult.Fixed: return "Bina girişleri silinemez";

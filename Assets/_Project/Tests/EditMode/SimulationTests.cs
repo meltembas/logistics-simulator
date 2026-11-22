@@ -146,6 +146,32 @@ namespace Logistics.Tests
         }
 
         [Test]
+        public void RoundaboutGoesOnBusyJunctionButNotOnEntrances()
+        {
+            var w = World.CreateEmpty(cfg);
+            w.SpawningEnabled = false;
+            w.Inventory.Roundabouts = 2;
+            var depot = w.AddDepot(CargoType.Food, new TileCoord(8, 2), Dir.N);
+            var s1 = w.AddStore(CargoType.Food, new TileCoord(3, 10), Dir.E);
+            var s2 = w.AddStore(CargoType.Food, new TileCoord(15, 10), Dir.W);
+            var junction = new TileCoord(depot.entrance.x, 10);
+            DrawLine(w, depot.entrance, junction);
+            DrawLine(w, junction, s1.entrance);
+            DrawLine(w, junction, s2.entrance);
+            for (int i = 0; i < 30 * 30 && !w.Traffic.IsTileInUse(junction); i++) w.Tick(1f / 30f);
+            Assert.IsTrue(w.Traffic.IsTileInUse(junction), "a truck route should pass the junction");
+
+            Assert.AreEqual(EditResult.Entrance, w.Editor.PlaceRoundabout(depot.entrance));
+            Assert.AreEqual(EditResult.Ok, w.Editor.PlaceRoundabout(junction));
+            Assert.IsTrue(w.Roads.IsRoundabout(junction));
+            Assert.AreEqual(1, w.Inventory.Roundabouts);
+
+            int before = w.Score;
+            for (int i = 0; i < 60 * 30; i++) w.Tick(1f / 30f);
+            Assert.Greater(w.Score, before, "deliveries keep flowing through the new roundabout");
+        }
+
+        [Test]
         public void TwoStoresWithManyTrucksDoNotGridlock()
         {
             var w = World.CreateEmpty(cfg);
