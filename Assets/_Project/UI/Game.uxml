@@ -1,0 +1,139 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:lg="Logistics">
+    <ui:Style src="Game.uss" />
+    <ui:VisualElement name="root" class="root" picking-mode="Ignore">
+
+        <ui:VisualElement name="hud" class="layer" picking-mode="Ignore">
+            <ui:VisualElement class="top-bar" picking-mode="Ignore">
+                <ui:VisualElement class="panel week-card">
+                    <ui:VisualElement class="week-block">
+                        <ui:Label text="HAFTA" class="caption" />
+                        <ui:Label name="weekNumber" text="1" class="big-number" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="days">
+                        <ui:VisualElement name="dayLabels" class="day-labels" />
+                        <ui:VisualElement class="progress-track">
+                            <ui:VisualElement name="weekFill" class="progress-fill" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="speed-group">
+                        <ui:Button name="pauseButton" class="icon-button" tooltip="Duraklat (Boşluk)">
+                            <lg:Glyph kind="pause" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button name="speed1Button" class="icon-button selected" tooltip="Normal hız (1)">
+                            <lg:Glyph kind="play" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button name="speed2Button" class="icon-button" tooltip="Hızlı (2)">
+                            <lg:Glyph kind="fast" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="right-column" picking-mode="Ignore">
+                    <ui:VisualElement class="panel score-card">
+                        <lg:Glyph kind="parcel" class="score-icon" picking-mode="Ignore" />
+                        <ui:VisualElement>
+                            <ui:Label text="TESLİMAT" class="caption" />
+                            <ui:Label name="scoreLabel" text="0" class="big-number" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="cargoLegend" class="cargo-legend" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="toolbar" picking-mode="Ignore">
+                <ui:VisualElement class="panel toolbar-panel">
+                    <ui:Button name="toolRoad" class="tool-button selected">
+                        <ui:Label text="R" class="tool-key" picking-mode="Ignore" />
+                        <ui:Label name="countRoad" text="0" class="tool-count" picking-mode="Ignore" />
+                        <lg:Glyph kind="road" class="tool-icon" picking-mode="Ignore" />
+                        <ui:Label text="Yol" class="tool-name" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button name="toolBridge" class="tool-button">
+                        <ui:Label name="countBridge" text="0" class="tool-count" picking-mode="Ignore" />
+                        <lg:Glyph kind="bridge" class="tool-icon" picking-mode="Ignore" />
+                        <ui:Label text="Köprü" class="tool-name" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button name="toolRoundabout" class="tool-button">
+                        <ui:Label text="T" class="tool-key" picking-mode="Ignore" />
+                        <ui:Label name="countRoundabout" text="0" class="tool-count" picking-mode="Ignore" />
+                        <lg:Glyph kind="roundabout" class="tool-icon" picking-mode="Ignore" />
+                        <ui:Label text="Göbek" class="tool-name" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button name="toolHighway" class="tool-button">
+                        <ui:Label text="H" class="tool-key" picking-mode="Ignore" />
+                        <ui:Label name="countHighway" text="0" class="tool-count" picking-mode="Ignore" />
+                        <lg:Glyph kind="highway" class="tool-icon" picking-mode="Ignore" />
+                        <ui:Label text="Otoyol" class="tool-name" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:Label name="hint" class="hint" picking-mode="Ignore" text="Sol tık sürükle: yol  ·  Sağ tık: sil  ·  WASD / orta tık: kaydır  ·  Tekerlek: yakınlaş  ·  Q/E: döndür" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="toast" picking-mode="Ignore">
+            <ui:Label name="toast" class="toast-label" picking-mode="Ignore" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="menu" class="layer menu">
+            <ui:VisualElement class="menu-panel">
+                <ui:Label text="ROTA" class="title" />
+                <ui:VisualElement class="title-accent" />
+                <ui:Label text="LOJİSTİK SİMÜLATÖRÜ" class="subtitle" />
+                <ui:Button name="playButton" text="Oyna" class="button primary" />
+                <ui:Button name="quitButton" text="Çıkış" class="button" />
+                <ui:Label name="bestLabel" text="" class="menu-stat" />
+            </ui:VisualElement>
+            <ui:Label class="credits" text="Dokular ve gökyüzü: Poly Haven (CC0) · Yazı tipi: Barlow (OFL)" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="upgrade" class="layer dim hidden">
+            <ui:VisualElement class="modal">
+                <ui:Label name="upgradeTitle" text="Hafta 2" class="modal-title" />
+                <ui:Label name="upgradeSub" text="+20 yol karosu eklendi. Bir yükseltme seç:" class="modal-sub" />
+                <ui:VisualElement name="cards" class="cards" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="pause" class="layer dim hidden">
+            <ui:VisualElement class="modal">
+                <ui:Label text="Duraklatıldı" class="modal-title" />
+                <ui:Label text="Şehir seni bekliyor." class="modal-sub" />
+                <ui:VisualElement class="slider-row">
+                    <ui:Label text="Müzik" class="slider-label" />
+                    <ui:Slider name="musicSlider" low-value="0" high-value="1" value="0.6" class="slider" />
+                </ui:VisualElement>
+                <ui:VisualElement class="slider-row">
+                    <ui:Label text="Efektler" class="slider-label" />
+                    <ui:Slider name="sfxSlider" low-value="0" high-value="1" value="0.8" class="slider" />
+                </ui:VisualElement>
+                <ui:Button name="resumeButton" text="Devam" class="button primary" />
+                <ui:Button name="restartButton" text="Yeniden Başlat" class="button" />
+                <ui:Button name="menuButton" text="Ana Menü" class="button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="gameOver" class="layer dim hidden">
+            <ui:VisualElement class="modal">
+                <ui:Label name="gameOverTitle" text="Bir mağaza taştı!" class="modal-title danger-title" />
+                <ui:Label name="gameOverSub" text="" class="modal-sub" />
+                <ui:VisualElement class="stat-row">
+                    <ui:VisualElement class="stat">
+                        <ui:Label name="finalScore" text="0" class="stat-value" />
+                        <ui:Label text="TESLİMAT" class="stat-name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="stat">
+                        <ui:Label name="finalWeek" text="1" class="stat-value" />
+                        <ui:Label text="HAFTA" class="stat-name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="stat">
+                        <ui:Label name="finalBest" text="0" class="stat-value" />
+                        <ui:Label text="REKOR" class="stat-name" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Button name="againButton" text="Tekrar Oyna" class="button primary" />
+                <ui:Button name="overMenuButton" text="Ana Menü" class="button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cbf3242231f4eb9808e7710bbd951c, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: Logistics.Runtime::Logistics.GameConfig
+  mapWidth: 36
+  mapHeight: 26
+  tileSize: 8
+  startBoundsSize: {x: 14, y: 10}
+  boundsGrowPerWeek: 2
+  treeCoverage: 0.22
+  fillerBuildingChance: 0.05
+  weekSeconds: 75
+  startRoadTiles: 40
+  weeklyRoadTiles: 20
+  startBridges: 1
+  startRoundabouts: 0
+  startHighways: 0
+  bonusRoadTiles: 15
+  maxBridgeSpan: 4
+  maxHighwayLength: 14
+  truckSpeed: 11
+  truckAccel: 9
+  truckBrake: 18
+  cornerSpeedFactor: 0.6
+  highwaySpeedMultiplier: 1.8
+  unloadSeconds: 1.2
+  laneOffset: 1.6
+  truckLength: 5.8
+  followGap: 2.2
+  trucksPerDepot: 1
+  trucksPerStore: 1
+  maxTrucksPerDepot: 8
+  orderIntervalStart: 20
+  orderIntervalMin: 8
+  orderIntervalWeeklyGrowth: 0.1
+  overflowThreshold: 5
+  overflowSeconds: 50
+  overflowRecoverRate: 1.5
+  storeSpawnIntervalStart: 24
+  storeSpawnIntervalMin: 10
+  cargoUnlockWeeks: 0000000002000000040000000600000008000000i
+  initialStores: 2
+  maxStoresPerDepot: 5
