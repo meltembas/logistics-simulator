@@ -23,7 +23,7 @@ MonoBehaviour:
   startRoadTiles: 40
   weeklyRoadTiles: 20
   startBridges: 1
-  startRoundabouts: 0
+  startRoundabouts: 1
   startHighways: 0
   bonusRoadTiles: 15
   maxBridgeSpan: 4

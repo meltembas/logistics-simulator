@@ -56,7 +56,13 @@ namespace Logistics
             highwayStart = null;
             ToolChanged?.Invoke(t);
             if (t == Tool.Highway) Say("Otoyol: başlangıç yolunu, sonra bitiş yolunu tıkla", false);
-            if (t == Tool.Roundabout) Say("Göbek kavşak: bir yol karosuna tıkla", false);
+            if (t == Tool.Roundabout)
+            {
+                if (game != null && game.World != null && W.Inventory.Roundabouts <= 0)
+                    Say(RoadEditor.Describe(EditResult.NoRoundabouts), true);
+                else
+                    Say("Göbek kavşak: bir kavşağa tıkla", false);
+            }
         }
 
         void Say(string msg, bool danger)
@@ -242,7 +248,10 @@ namespace Logistics
             bool ok;
             switch (Current)
             {
-                case Tool.Roundabout: ok = W.Roads.IsRoad(tile) && !W.Roads.IsBridge(tile) && W.Inventory.Roundabouts > 0; break;
+                case Tool.Roundabout:
+                    ok = W.Roads.IsRoad(tile) && !W.Roads.IsBridge(tile) && !W.Roads.IsRoundabout(tile)
+                         && !W.Roads.BuildingSide(tile).HasValue && W.Inventory.Roundabouts > 0;
+                    break;
                 case Tool.Highway: ok = W.Roads.IsRoad(tile) && !W.Roads.IsBridge(tile); break;
                 default:
                     ok = W.Roads.IsRoad(tile) || (W.Grid.IsBuildableGround(tile) && W.Inventory.Roads > 0)

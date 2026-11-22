@@ -245,11 +245,15 @@ namespace Logistics.EditorTools
             return m;
         }
 
-        static void MakeTransparent(Material m)
+        static void MakeTransparent(Material m, bool preserveSpecular = false)
         {
             m.SetFloat("_Surface", 1f);
             m.SetFloat("_Blend", 0f);
-            m.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha);
+            // URP Lit "Preserve Specular Lighting": alpha is applied to diffuse in the shader so
+            // sun glints on transparent surfaces (water) are not faded — matches the editor's own validation.
+            m.SetFloat("_BlendModePreserveSpecular", preserveSpecular ? 1f : 0f);
+            if (preserveSpecular) m.EnableKeyword("_ALPHAPREMULTIPLY_ON"); else m.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            m.SetFloat("_SrcBlend", preserveSpecular ? (float)BlendMode.One : (float)BlendMode.SrcAlpha);
             m.SetFloat("_DstBlend", (float)BlendMode.OneMinusSrcAlpha);
             m.SetFloat("_SrcBlendAlpha", (float)BlendMode.One);
             m.SetFloat("_DstBlendAlpha", (float)BlendMode.OneMinusSrcAlpha);
@@ -280,7 +284,7 @@ namespace Logistics.EditorTools
             m.SetFloat("_BumpScale", 0.6f);
             m.EnableKeyword("_NORMALMAP");
             m.SetTextureScale("_BaseMap", new Vector2(1f, 1f));
-            MakeTransparent(m);
+            MakeTransparent(m, preserveSpecular: true);
             EditorUtility.SetDirty(m);
             return m;
         }
