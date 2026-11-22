@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c191c17712d46a7acf891cf3198e34, type: 3}
+  m_Name: MaterialLibrary
+  m_EditorClassIdentifier: Logistics.Runtime::Logistics.MaterialLibrary
+  asphalt: {fileID: 2100000, guid: 2a286139c7df0419a968e45709c9c592, type: 2}
+  sidewalk: {fileID: 2100000, guid: e8371b6ee0b35493d85d550b816535bf, type: 2}
+  lot: {fileID: 2100000, guid: cd858a5dc869d4485948cc4f779ee679, type: 2}
+  grass: {fileID: 2100000, guid: 6c40c17447d9d47369a2a8141383b312, type: 2}
+  riverbed: {fileID: 2100000, guid: 1d9eaeb133d8849a0bacb1e239fdb36d, type: 2}
+  warehouseWall: {fileID: 2100000, guid: dc24d8c5c39724555b73a9af8eba5b34, type: 2}
+  warehouseRoof: {fileID: 2100000, guid: bad9fdce2d3ab465398c7a5dfe72657c, type: 2}
+  brick: {fileID: 2100000, guid: 5f629cfaf76d14faf81e5ae5a81ad5e2, type: 2}
+  plaster: {fileID: 2100000, guid: c181f8298f7914c4c8f92c1c61598bb5, type: 2}
+  roofTiles: {fileID: 2100000, guid: 75f458b6ec4574fb39017ed30b5061c4, type: 2}
+  flatRoof: {fileID: 2100000, guid: 31866832d86374a1b87318ce2a2834db, type: 2}
+  asphaltMeters: 3
+  sidewalkMeters: 1.8
+  lotMeters: 2
+  grassMeters: 15
+  riverbedMeters: 20
+  warehouseWallMeters: 3
+  warehouseRoofMeters: 2
+  brickMeters: 1.4
+  plasterMeters: 3
+  roofTilesMeters: 6
+  flatRoofMeters: 2.2
+  concrete: {fileID: 2100000, guid: 41beb5ee34c634a6f9bcdec1638e9090, type: 2}
+  marking: {fileID: 2100000, guid: 825652afaa3be499a884df60c687db00, type: 2}
+  water: {fileID: 2100000, guid: 0b4bd83d835494d06a39d6838b7daeef, type: 2}
+  glass: {fileID: 2100000, guid: e3978aadad50e442c81da00c16859cb5, type: 2}
+  rubber: {fileID: 2100000, guid: cdebb3b32029b473e8bcc0c4e36e2a8e, type: 2}
+  chassis: {fileID: 2100000, guid: 41259418985f04b429b081642b4d355d, type: 2}
+  cabPaint: {fileID: 2100000, guid: a93ad8d3c0b48435bb96c810741a9f5f, type: 2}
+  darkMetal: {fileID: 2100000, guid: 822078f8563c24584b0075961b64075d, type: 2}
+  bark: {fileID: 2100000, guid: 40c88a2e9240d4aaaad63a2fe3888bcd, type: 2}
+  foliage:
+  - {fileID: 2100000, guid: b290a91f896924cf687223d77bbd0178, type: 2}
+  - {fileID: 2100000, guid: 47f15ce94e6cd44318f57fc1f41e51e6, type: 2}
+  - {fileID: 2100000, guid: 7bd5edb50b55b4f4c821ff3601d1cb4f, type: 2}
+  headlight: {fileID: 2100000, guid: daab03f542ac74d98b4149fd6eca9ff8, type: 2}
+  brakeOff: {fileID: 2100000, guid: 6b60747315043478eb4d2046e754ea4e, type: 2}
+  brakeOn: {fileID: 2100000, guid: f166fab8dfc0e495289d5076dc00bbd8, type: 2}
+  cargoPaint:
+  - {fileID: 2100000, guid: aa55a98d70d934734886391cae2581f0, type: 2}
+  - {fileID: 2100000, guid: 89cd87c53c00244148d1d1a94582249e, type: 2}
+  - {fileID: 2100000, guid: 97046f48a76294da19153b108efc8d06, type: 2}
+  - {fileID: 2100000, guid: a8780a6555e504c69a361294331974b2, type: 2}
+  - {fileID: 2100000, guid: 95dd7e4b5428840d587abc8dcbd5a1b0, type: 2}
+  cargoGlow:
+  - {fileID: 2100000, guid: fc8ffccafa6a04b438502238fee0d7e7, type: 2}
+  - {fileID: 2100000, guid: 21cc9b8beb47040f7986d8aaba5cc047, type: 2}
+  - {fileID: 2100000, guid: bf8544030e1794c3086c7849f4be1e27, type: 2}
+  - {fileID: 2100000, guid: 422ec12f631564e5da4f7af2d3a24389, type: 2}
+  - {fileID: 2100000, guid: 722cf7d2019224ee3bc797f640134eb2, type: 2}
+  overlay: {fileID: 2100000, guid: 38da352b9e4f74a1aa077e3e337fbee0, type: 2}
+  ghost: {fileID: 2100000, guid: 37793ab65caef47f48121c09a345b59a, type: 2}
+  ringBase: {fileID: 2100000, guid: 1760d4bd5754f492e9c2f1bea02c8148, type: 2}
+  ringFill: {fileID: 2100000, guid: e871fc1291c4b40f383d305a76c6a3c6, type: 2}
+  fx: {fileID: 2100000, guid: d816e28c8e9944ad5a2ca25443c47ac0, type: 2}
